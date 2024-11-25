@@ -1,10 +1,14 @@
-import React, { useState, useCallback } from 'react';
-import { Calendar, ArrowRightLeft, Twitter } from 'lucide-react';
-import { Header } from './components/Header';
-import { TimeInput } from './components/TimeInput';
-import { QuoteBox } from './components/QuoteBox';
-import { elonQuotes, calculateElonTime, calculateRealTime } from './utils/timeCalculations';
-import { generateElonQuote } from './services/openai';
+import React, { useState, useCallback } from "react";
+import { Calendar, ArrowRightLeft, Twitter } from "lucide-react";
+import { Header } from "./components/Header";
+import { TimeInput } from "./components/TimeInput";
+import { QuoteBox } from "./components/QuoteBox";
+import {
+  elonQuotes,
+  calculateElonTime,
+  calculateRealTime,
+} from "./utils/timeCalculations";
+import { generateElonQuote } from "./services/openai";
 
 function App() {
   const [regularYear, setRegularYear] = useState<number>(2024);
@@ -12,17 +16,20 @@ function App() {
   const [quote, setQuote] = useState<string>(elonQuotes[0]);
   const [isLoadingQuote, setIsLoadingQuote] = useState<boolean>(false);
 
-  const generateNewQuote = useCallback(async (regular: number, elon: number) => {
-    setIsLoadingQuote(true);
-    try {
-      const newQuote = await generateElonQuote(regular, elon);
-      setQuote(newQuote);
-    } catch (error) {
-      setQuote(elonQuotes[Math.floor(Math.random() * elonQuotes.length)]);
-    } finally {
-      setIsLoadingQuote(false);
-    }
-  }, []);
+  const generateNewQuote = useCallback(
+    async (regular: number, elon: number) => {
+      setIsLoadingQuote(true);
+      try {
+        const newQuote = await generateElonQuote(regular, elon);
+        setQuote(newQuote);
+      } catch (error) {
+        setQuote(elonQuotes[Math.floor(Math.random() * elonQuotes.length)]);
+      } finally {
+        setIsLoadingQuote(false);
+      }
+    },
+    [],
+  );
 
   const handleRegularYearChange = async (year: number) => {
     const newElonYear = calculateElonTime(year);
@@ -69,15 +76,29 @@ function App() {
               />
             </div>
 
-            <QuoteBox 
-              quote={quote} 
+            <QuoteBox
+              quote={quote}
               isLoading={isLoadingQuote}
               onRefresh={handleRefreshQuote}
             />
           </div>
 
-          <div className="text-center mt-8 text-gray-400 text-sm">
-            <p>* Results may vary. Not financial advice. May or may not include trips to Mars.</p>
+          <div className="text-center mt-8">
+            <p className="text-gray-400 text-sm">
+              * Results may vary. Not financial advice. May or may not include
+              trips to Mars.
+            </p>
+            <p className="text-gray-500 text-xs mt-2">
+              Created by{" "}
+              <a
+                href="https://github.com/lx-0/elon-time-converter"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-gray-400 transition-colors"
+              >
+                @lx-0
+              </a>
+            </p>
           </div>
         </div>
       </div>
