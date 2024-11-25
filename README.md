@@ -41,4 +41,4 @@ Feel free to submit issues and enhancement requests!
 ## License 📝
 MIT
 
-Disclaimer: This is a parody project and not affiliated with Elon Musk or any of his companies. Results may vary. Not financial advice. May or may not include trips to Mars.
+_Disclaimer: This is a parody project and not affiliated with Elon Musk or any of his companies. Results may vary. Not financial advice. May or may not include trips to Mars._
