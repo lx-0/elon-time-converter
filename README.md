@@ -2,6 +2,8 @@
 
 A humorous web application that converts regular Earth time to "Elon Time" - a playful take on optimistic project timelines. Built with React, TypeScript, and powered by OpenAI's GPT-3.5.
 
+## [🔗 Try the Demo](https://elon-time-converter.replit.app)
+
 ## Features ✨
 
 - Convert regular years to Elon Time using advanced temporal recalibration algorithms
