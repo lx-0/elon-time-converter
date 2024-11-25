@@ -3,7 +3,8 @@ export async function generateElonQuote(
   elonYear: number,
 ): Promise<string> {
   try {
-    const response = await fetch("http://localhost:3000/api/generate-quote", {
+    // Use relative path instead of hardcoded localhost URL
+    const response = await fetch("/api/generate-quote", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
